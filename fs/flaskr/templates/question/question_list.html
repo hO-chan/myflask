@@ -1,0 +1,38 @@
+<!-- 질문 목록 -->
+{% if question_list %}
+<ul>
+    {% for question in question_list %}
+    <!-- 기존(하드코딩):  <li><a href="/detail/{{ question.id }}/">{{question.subject}}</a></li> -->
+    <li><a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a></li>
+
+    {% endfor %}
+</ul>
+{% else %}
+<p>질문이 없습니다.</p>
+{% endif %}
+
+{% raw %}
+<!--
+{% 와 %}로 둘러싸인 문장을 템플릿 태그라고 한다. 
+이 태그가 파이썬 코드와 연결된다. 
+question_list.html 파일에 사용한 템플릿 태그들을 잠시 
+살펴보자.
+
+{% if question_list %}
+위 코드는 render_template 함수에서 전달받은 질문 목록
+데이터 question_list가 있는지 검사한다.
+
+{% for question in question_list %}
+위 코드는 question_list에 저장된 데이터를 하나씩 꺼내
+question 객체에 대입한다. 파이썬의 for~in 문을 떠올리면
+쉽게 이해할 수 있을 것이다.
+
+{{ question.id }}
+위 코드는 바로 앞의 for 문에서 얻은 question 객체의 id를
+출력한다. {{ question.subject }} 코드도 같은 맥락으로
+이해할 수 있다. 템플릿 태그는 파이썬에 입문한 독자라면
+충분히 이해할 수 있을 것이다.
+
+jinja2 raw 블록으로 감싸야 주석도 안전처리 가능
+-->
+{% endraw %}
