@@ -1,7 +1,23 @@
 $env:FLASK_APP="flaskr:create_app"
 
+#git과 github 관련은 root = myflask 에서 실행하자
 
-
+#가상 환경 실행 및 flask 환경 설정 후 flask 실행
+#myflask/fs 에서 실행 해야함
 .venv\Scripts\activate
 set FLASK_APP=flaskr:create_app
 flask run
+
+
+#가상환경에서..
+##설치된 패키지 저장:
+
+pip freeze > requirements.txt
+
+##나중에 다시 설치 할 때:
+
+pip install -r requirements
+
+
+## deactivate 가 안먹히는 경우:
+.venv\Scripts\deactivate.bat
