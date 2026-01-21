@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{%block content %}
+<!-- 질문 등록 -->
+
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+
+
+    <form method="post" class="post-form my-3">
+        {{ form.csrf_token }}
+
+        <!-- 오류표시 Start -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items() %}
+            <strong>{{ form[field].label }}</strong>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- 오류표시 End -->
+
+        <!-- value 로 에러 나도 내용 안날리게 하기 -->
+        <div class="mb-3">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject" value="{{form.subject.data or ''}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content" id="content" rows="10">{{form.content.data or ''}}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">저장하기</button>
+
+    </form>
+</div>
+{%endblock%}
+
+{%raw%}
+<form method="post" class="my-3">
+
+    <!--  
+    이건 이쁘게 만들 수 없다고 html 로 직접 짜래 
+    자동으로 생성되는 html은 이쁘게 못만든대
+    -->
+    <!-- 라벨표시 -->
+    {{form.subject.label}}
+    <!-- 입력 폼 표시 -->
+    {{form.subject(class='form-control')}}
+
+    {{form.email.label}}
+    {{form.email(class='form-control')}}
+
+    {{form.content.label}}
+    {{form.content(class='form-control')}}
+    <!-- class='form-control' 로 부트 스트랩 css적용 -->
+
+    <button type="submit" class="btn btn-primary">저장하기</button>
+
+</form>
+{%endraw%}
