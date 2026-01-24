@@ -2,7 +2,7 @@ from flask import Blueprint, render_template,request,url_for
 
 from flaskr.models import Question
 
-from flaskr.forms import QuestionForm
+from flaskr.forms import QuestionForm, AnswerForm
 
 from datetime import datetime
 from werkzeug.utils import redirect
@@ -19,8 +19,9 @@ def _list():
 
 @bp.route('/detail/<int:question_id>/')
 def detail(question_id):
+    form = AnswerForm()
     question = Question.query.get_or_404(question_id)
-    return render_template('question/question_detail.html', question=question) 
+    return render_template('question/question_detail.html',question=question,form=form) 
 
 @bp.route('/create/',methods=('GET','POST'))
 def create():

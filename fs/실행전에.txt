@@ -4,6 +4,7 @@ $env:FLASK_APP="flaskr:create_app"
 
 #가상 환경 실행 및 flask 환경 설정 후 flask 실행
 #myflask/fs 에서 실행 해야함
+cd fs
 .venv\Scripts\activate
 set FLASK_APP=flaskr:create_app
 flask run

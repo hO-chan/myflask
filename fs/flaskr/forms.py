@@ -14,5 +14,8 @@ class QuestionForm(FlaskForm): #플라스크 폼은 FlaskFrom 을 상속하여 �
     #https://wtforms.readthedocs.io/en/2.3.x/validators/#built-in-validators
 
 
+# 답변 폼 만들기
 
-    
+class AnswerForm(FlaskForm):
+    content = TextAreaField('내용',validators=[DataRequired('내용은 필수로 작성해야합니다.')])
+    #오타나면 안된디. context 라 썼더니 에러남

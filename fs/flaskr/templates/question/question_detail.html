@@ -31,6 +31,24 @@
     {% endfor %}
     <!-- 답변 등록 -->
     <form action="{{ url_for('answer.create', question_id=question.id) }}" method="post" class="my-3">
+        <!-- CSRF 토큰 -->
+        {{form.csrf_token}}
+        <!-- 오류표시 start -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items()%}
+            <strong>{{form[field].label}}</strong>
+            <ul>
+                {% for err in errors %}
+                <li>{{errors}}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+        <!-- 오류표시 end -->
+
         <div class="mb-3">
             <textarea name="content" id="content" class="form-control" rows="10"></textarea>
         </div>
