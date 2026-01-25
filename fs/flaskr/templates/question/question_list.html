@@ -22,6 +22,11 @@
 
                 <td>
                     <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+                    {% if question.answer_set | length >0 %}
+                    <span class="text-danger small mx-2">
+                        {{ question.answer_set|length}}
+                    </span>
+                    {% endif %}
                 </td>
                 <!-- 템플릿 필터 적용 -->
                 <td>{{ question.create_date | datetime }}</td>
