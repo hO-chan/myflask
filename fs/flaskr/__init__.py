@@ -28,6 +28,10 @@ def create_app(test_config=None):
     #더이상 def hello() 를 사용하지 않아도 된다.
     #create_app에 여러 함수를 계쏙해서 붙일 필요x
 
+    #템플릿 필터
+    from .filter import format_datetime
+    app.jinja_env.filters['datetime'] = format_datetime
+
     return app
 
 # if __name__=='__init__':
